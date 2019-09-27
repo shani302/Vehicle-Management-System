@@ -5,9 +5,9 @@ import com.shani.vehicle.exceptions.ApplicationException;
 public class Validation {
 
 	
-	// year contains 4 digits, between 1900-2099
+	// year between 1900-2099
 	public static boolean isYearValid(String year) throws ApplicationException{
-		String regex = "/(?:(?:19|20)[0-9]{2})/";
+		String regex = "^(19|20)\\d{2}$";
 		return year.matches(regex);
 	}
 	// license number contains between 5 - 8 numbers

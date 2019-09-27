@@ -33,10 +33,10 @@ public class VehicleController {
 	public void updateVehicle(Vehicle vehicle) throws ApplicationException{
 		Long origionLicenseNumber = getVehicle(vehicle.getVehicleId()).getLicenseNumber();
 		Long thisLicenseNumber = vehicle.getLicenseNumber();
-		if(thisLicenseNumber.equals(origionLicenseNumber)) {
+		if(!thisLicenseNumber.equals(origionLicenseNumber)) {
 			if(isVehicleExistByLicenseNumber(thisLicenseNumber)) {
 				throw new ApplicationException(ErrorType.LICENSE_NUMBER_ALREADY_EXISTS, DateUtils.getTimeStamp()
-						+ " | Error in VehicleController.updateVehicle | The vehicle license number is already in exist");
+						+ " | Error in VehicleController.updateManyVehicles | The vehicle license number is already in exist");
 			}
 		}
 		validateVehicle(vehicle);
@@ -47,7 +47,7 @@ public class VehicleController {
 		for (Vehicle vehicle : vehicles) {
 			Long origionLicenseNumber = getVehicle(vehicle.getVehicleId()).getLicenseNumber();
 			Long thisLicenseNumber = vehicle.getLicenseNumber();
-			if(thisLicenseNumber.equals(origionLicenseNumber)) {
+			if(!thisLicenseNumber.equals(origionLicenseNumber)) {
 				if(isVehicleExistByLicenseNumber(thisLicenseNumber)) {
 					throw new ApplicationException(ErrorType.LICENSE_NUMBER_ALREADY_EXISTS, DateUtils.getTimeStamp()
 							+ " | Error in VehicleController.updateManyVehicles | The vehicle license number is already in exist");
@@ -88,11 +88,11 @@ public class VehicleController {
 			throw new ApplicationException(ErrorType.MUST_ENTER_VALUES, DateUtils.getTimeStamp()
 					+ "| Error in VehicleController.validateVehicle | values must be entered for vehicle");
 		}
-		if(vehicle.getLicenseNumber() > 0) {
+		if(vehicle.getLicenseNumber() < 0) {
 			throw new ApplicationException(ErrorType.MUST_ENTER_LICENSE_NUMBER, DateUtils.getTimeStamp()
 			+ "| Error in VehicleController.validateVehicle | the vehicle license number is null");
 		}
-		if(Validation.isLicenseNumberValid(vehicle.getLicenseNumber())) {
+		if(!Validation.isLicenseNumberValid(vehicle.getLicenseNumber())) {
 			throw new ApplicationException(ErrorType.INVALID_LICENSE_NUMBER, DateUtils.getTimeStamp()
 			+ "| Error in VehicleController.validateVehicle | the vehicle license number is invalid");
 		}
@@ -112,7 +112,7 @@ public class VehicleController {
 			throw new ApplicationException(ErrorType.MUST_ENTER_YEAR, DateUtils.getTimeStamp()
 			+ "| Error in VehicleController.validateVehicle | the vehicle year is null");
 		}
-		if(Validation.isYearValid(vehicle.getYear())) {
+		if(!Validation.isYearValid(vehicle.getYear())) {
 			throw new ApplicationException(ErrorType.INVALID_YEAR, DateUtils.getTimeStamp()
 			+ "| Error in VehicleController.validateVehicle | the vehicle year is invalid");
 		}

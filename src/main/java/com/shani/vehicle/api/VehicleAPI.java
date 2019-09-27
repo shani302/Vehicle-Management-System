@@ -51,7 +51,7 @@ public class VehicleAPI {
 	
 	@DeleteMapping
 	@RequestMapping("/manyDeletes/{vehiclesIds}")
-	public void deleteManyVehicles(int[] vehiclesIds) throws ApplicationException{
+	public void deleteManyVehicles(@PathVariable("vehiclesIds") int[] vehiclesIds) throws ApplicationException{
 		vehicleController.deleteManyVehicles(vehiclesIds);
 	}
 	
