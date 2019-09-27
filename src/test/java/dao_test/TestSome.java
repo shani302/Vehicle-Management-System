@@ -2,16 +2,20 @@ package dao_test;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+import com.shani.vehicle.beans.Log;
 import com.shani.vehicle.beans.Vehicle;
 import com.shani.vehicle.beans.VehicleFilters;
 import com.shani.vehicle.dao.VehicleDAO;
 import com.shani.vehicle.enums.EuroEmissionsStandard;
 import com.shani.vehicle.enums.FuelType;
 import com.shani.vehicle.enums.GearboxType;
+import com.shani.vehicle.logic.LogController;
+import com.shani.vehicle.utils.DateUtils;
 
 public class TestSome {
 
@@ -107,29 +111,42 @@ public class TestSome {
 		//  for int/float/long -> -1
 		//  for String -> ""
 		//  for Enum -> null
-		VehicleFilters filters = new VehicleFilters();
-		filters.setVehicleId(-1);
-		filters.setLicenseNumber(-1);
-		filters.setModel("7");
-		filters.setFromYear("2000");
-		filters.setUpToYear("3000");
-		filters.setFromPower(-1);
-		filters.setUpToPower(-1);
-		filters.setFromTopSpeed(-1);
-		filters.setUpToTopSpeed(-1);
-		filters.setFromCo2Emissions(-1);
-		filters.setUpToCo2Emissions(-1);
-		filters.setEuroEmissionsStandard(EuroEmissionsStandard.Euro6);
-		filters.setFromFuelConsumption(-1);
-		filters.setUpToFuelConsumption(-1);
-		filters.setFuelType(null);
-		filters.setFromDisplacment(-1);
-		filters.setUpToDisplacment(-1);
-		filters.setGearbox(null);
-		List<Vehicle>vehicles = vehicleDAO.getAllVehiclesByFilters(filters);
-		for (Vehicle vehicle : vehicles) {
-			System.out.println(vehicle);
-		}
+//		VehicleFilters filters = new VehicleFilters();
+//		filters.setVehicleId(-1);
+//		filters.setLicenseNumber(-1);
+//		filters.setModel("7");
+//		filters.setFromYear("2000");
+//		filters.setUpToYear("3000");
+//		filters.setFromPower(-1);
+//		filters.setUpToPower(-1);
+//		filters.setFromTopSpeed(-1);
+//		filters.setUpToTopSpeed(-1);
+//		filters.setFromCo2Emissions(-1);
+//		filters.setUpToCo2Emissions(-1);
+//		filters.setEuroEmissionsStandard(EuroEmissionsStandard.Euro6);
+//		filters.setFromFuelConsumption(-1);
+//		filters.setUpToFuelConsumption(-1);
+//		filters.setFuelType(null);
+//		filters.setFromDisplacment(-1);
+//		filters.setUpToDisplacment(-1);
+//		filters.setGearbox(null);
+//		List<Vehicle>vehicles = vehicleDAO.getAllVehiclesByFilters(filters);
+//		for (Vehicle vehicle : vehicles) {
+//			System.out.println(vehicle);
+//		}
+		
+//		LogController logController = new LogController();
+//		List<Log> logs = logController.getAllLogs();
+//		System.out.println(logs);
+		
+		Date date = DateUtils.getCurrentTime();
+		System.out.println(date);
+		long time = date.getTime();
+		System.out.println(time);
+		
+//		java.sql.Date dateSQL = DateUtils.getCurrentDay();
+//		System.out.println(dateSQL);
+		
 		
 	}
 }

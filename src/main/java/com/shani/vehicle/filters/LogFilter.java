@@ -1,6 +1,8 @@
 package com.shani.vehicle.filters;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -31,18 +33,21 @@ public class LogFilter implements Filter {
 
 		Log log = new Log();
 
-		log.setTimeStamp(DateUtils.getCurrentDay());
+		log.setTimeStamp(DateUtils.getCurrentTime());
 		log.setHttpMethod(httpRequest.getMethod());
 		log.setPath(httpRequest.getRequestURI());
 		log.setClientIP(httpRequest.getRemoteAddr());
 
 		// set vehicleId for mostActiveVehicle
-		String resultString = log.getPath().substring(10);
-		try {
-			long resultInt = Long.parseLong(resultString);
-			log.setVehicleId(resultInt);
-		} catch (NumberFormatException e) {
-			log.setVehicleId(0);
+		String regex = "/vehicles/(\\d+)";
+		Pattern replace = Pattern.compile("\\d+");
+		Matcher matcher = replace.matcher(log.getPath());
+		if (log.getPath().matches(regex)) {
+			if (matcher.find()) {
+				String strId = matcher.group();
+				long resultInt = Long.parseLong(strId);
+				log.setVehicleId(resultInt);
+			}
 		}
 
 		logController.createLog(log);

@@ -33,7 +33,14 @@ public class LogDAO implements ILogDAO {
 			connection = JdbcUtils.getConnection();
 			String sql = "INSERT INTO logs (time_stamp, http_method, path, client_IP, vehicle_id) VALUES(?,?,?,?,?)";
 			pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			pstmt.setDate(1, new Date(log.getTimeStamp().getTime()));
+			
+			System.out.println(log.getTimeStamp());
+			
+			java.sql.Timestamp sqlTime=new java.sql.Timestamp(log.getTimeStamp().getTime());
+	
+			System.out.println(sqlTime);
+			
+			pstmt.setTimestamp(1, sqlTime);
 			pstmt.setString(2, log.getHttpMethod());
 			pstmt.setString(3, log.getPath());
 			pstmt.setString(4, log.getClientIP());
@@ -48,9 +55,8 @@ public class LogDAO implements ILogDAO {
 			return logId;
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
-					DateUtils.getTimeStamp() + " | Error in LogDAO.createLog");
+					DateUtils.getTimeStamp() + " | Error in LogDAO.createLog", e);
 		} finally {
 			JdbcUtils.closeResources(connection, pstmt, rs);
 		}
@@ -77,7 +83,6 @@ public class LogDAO implements ILogDAO {
 			return logs;
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
 					DateUtils.getTimeStamp() + " | Error in LogDAO.getAllLogs");
 		} finally {
@@ -95,7 +100,6 @@ public class LogDAO implements ILogDAO {
 		try {
 			connection = JdbcUtils.getConnection();
 			String sql = QueryFactory.getQuerydate(date);
-			System.out.println(sql);
 			pstmt = connection.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			List<Log> logs = new ArrayList<>();
@@ -106,7 +110,6 @@ public class LogDAO implements ILogDAO {
 			return logs;
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
 					DateUtils.getTimeStamp() + " | Error in LogDAO.getAllLogsByDate");
 		} finally {
@@ -133,7 +136,6 @@ public class LogDAO implements ILogDAO {
 			return vehicles;
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
 					DateUtils.getTimeStamp() + " | Error in LogDAO.getMostActiveVehicles");
 		} finally {

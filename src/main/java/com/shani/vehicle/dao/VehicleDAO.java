@@ -70,7 +70,6 @@ public class VehicleDAO implements IVehicleDAO {
 			return vehicleId;
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
 					DateUtils.getTimeStamp() + " | Error in VehicleDAO.createVehicle");
 		} finally {
@@ -107,7 +106,6 @@ public class VehicleDAO implements IVehicleDAO {
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
 					DateUtils.getTimeStamp() + " | Error in VehicleDAO.updateVehicle");
 		} finally {
@@ -149,7 +147,6 @@ public class VehicleDAO implements IVehicleDAO {
 			pstmt.executeBatch();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
 					DateUtils.getTimeStamp() + " | Error in VehicleDAO.updateManyVehicle");
 		} finally {
@@ -172,7 +169,6 @@ public class VehicleDAO implements IVehicleDAO {
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
 					DateUtils.getTimeStamp() + " | Error in VehicleDAO.deleteVehicle");
 		} finally {
@@ -198,7 +194,6 @@ public class VehicleDAO implements IVehicleDAO {
 			pstmt.executeBatch();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
 					DateUtils.getTimeStamp() + " | Error in VehicleDAO.deleteManyVehicle");
 		} finally {
@@ -220,14 +215,13 @@ public class VehicleDAO implements IVehicleDAO {
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setLong(1, vehicleId);
 			rs = pstmt.executeQuery();
-			Vehicle vehicle = new Vehicle();
+			Vehicle vehicle = null;
 			if (rs.next()) {
 				vehicle = extractVehicle(rs);
 			}
 			return vehicle;
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
 					DateUtils.getTimeStamp() + " | Error in VehicleDAO.getVehicle");
 		} finally {
@@ -255,7 +249,6 @@ public class VehicleDAO implements IVehicleDAO {
 			return vehicles;
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
 					DateUtils.getTimeStamp() + " | Error in VehicleDAO.getAllVehicles");
 		} finally {
@@ -283,7 +276,6 @@ public class VehicleDAO implements IVehicleDAO {
 			return vehicles;
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
 					DateUtils.getTimeStamp() + " | Error in VehicleDAO.getAllVehiclesByFilters");
 		} finally {
@@ -309,7 +301,6 @@ public class VehicleDAO implements IVehicleDAO {
 			return false;
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
 					DateUtils.getTimeStamp() + " | Error in VehicleDAO.isVehicleExistByLicenseNumber");
 		} finally {
