@@ -146,6 +146,42 @@ public class TestSome {
 		System.out.println(t);
 		Date d = getDate(t);
 		System.out.println(d);
+		
+		/////////////////
+		
+//		Calendar cal = Calendar.getInstance();
+//		java.util.Date now = cal.getTime();
+//		
+//		Calendar israel =  Calendar.getInstance(TimeZone.getTimeZone("Asia/Jerusalem"));
+//		Calendar london =  Calendar.getInstance(TimeZone.getTimeZone("Europe/London"));
+//		Calendar paris = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
+//
+//		// now set the same date on two different calendar instance
+//		israel.setTime(now);
+//		london.setTime(now);
+//		paris.setTime(now);
+//
+//		// the time is the same
+//		assert israel.getTimeInMillis() == london.getTimeInMillis();
+//		assert israel.getTimeInMillis() == paris.getTimeInMillis();
+//		assert london.getTimeInMillis() == paris.getTimeInMillis();
+//
+//		// Israel is interpreted one hour earlier than Paris (as of post date of 9th May 2012)
+//		String israelTime = israel.get(Calendar.HOUR) + ":" + israel.get(Calendar.MINUTE);
+//		String israelTZ = israel.getTimeZone().getDisplayName(israel.getTimeZone().inDaylightTime(israel.getTime()), TimeZone.SHORT);
+//		System.out.println(israelTime + " " + israelTZ);
+//		
+//		// London is interpreted one hour earlier than Paris (as of post date of 9th May 2012)
+//		String londonTime = london.get(Calendar.HOUR) + ":" + london.get(Calendar.MINUTE);
+//		String londonTZ = london.getTimeZone().getDisplayName(london.getTimeZone().inDaylightTime(london.getTime()), TimeZone.SHORT);
+//		System.out.println(londonTime + " " + londonTZ);
+//
+//		// Paris is interpreted one hour later than Paris (as of post date of 9th May 2012)
+//		String parisTime = paris.get(Calendar.HOUR) + ":" + paris.get(Calendar.MINUTE);
+//		String parisTZ = paris.getTimeZone().getDisplayName(paris.getTimeZone().inDaylightTime(paris.getTime()), TimeZone.SHORT);
+//		System.out.println(parisTime + " " + parisTZ);
+		
+		/////////////////////////////////////
 
 	}
 

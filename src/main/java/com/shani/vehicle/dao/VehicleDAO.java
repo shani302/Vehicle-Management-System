@@ -71,7 +71,7 @@ public class VehicleDAO implements IVehicleDAO {
 
 		} catch (SQLException e) {
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
-					DateUtils.getTimeStamp() + " | Error in VehicleDAO.createVehicle");
+					DateUtils.getTimeStamp() + " | Error in VehicleDAO.createVehicle", e);
 		} finally {
 			JdbcUtils.closeResources(connection, pstmt, rs);
 		}
@@ -107,7 +107,7 @@ public class VehicleDAO implements IVehicleDAO {
 
 		} catch (SQLException e) {
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
-					DateUtils.getTimeStamp() + " | Error in VehicleDAO.updateVehicle");
+					DateUtils.getTimeStamp() + " | Error in VehicleDAO.updateVehicle", e);
 		} finally {
 			JdbcUtils.closeResources(connection, pstmt);
 		}
@@ -148,7 +148,7 @@ public class VehicleDAO implements IVehicleDAO {
 
 		} catch (SQLException e) {
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
-					DateUtils.getTimeStamp() + " | Error in VehicleDAO.updateManyVehicle");
+					DateUtils.getTimeStamp() + " | Error in VehicleDAO.updateManyVehicle", e);
 		} finally {
 			JdbcUtils.closeResources(connection, pstmt);
 		}
@@ -170,7 +170,7 @@ public class VehicleDAO implements IVehicleDAO {
 
 		} catch (SQLException e) {
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
-					DateUtils.getTimeStamp() + " | Error in VehicleDAO.deleteVehicle");
+					DateUtils.getTimeStamp() + " | Error in VehicleDAO.deleteVehicle", e);
 		} finally {
 			JdbcUtils.closeResources(connection, pstmt);
 		}
@@ -195,7 +195,7 @@ public class VehicleDAO implements IVehicleDAO {
 
 		} catch (SQLException e) {
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
-					DateUtils.getTimeStamp() + " | Error in VehicleDAO.deleteManyVehicle");
+					DateUtils.getTimeStamp() + " | Error in VehicleDAO.deleteManyVehicle", e);
 		} finally {
 			JdbcUtils.closeResources(connection, pstmt);
 		}
@@ -223,7 +223,7 @@ public class VehicleDAO implements IVehicleDAO {
 
 		} catch (SQLException e) {
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
-					DateUtils.getTimeStamp() + " | Error in VehicleDAO.getVehicle");
+					DateUtils.getTimeStamp() + " | Error in VehicleDAO.getVehicle", e);
 		} finally {
 			JdbcUtils.closeResources(connection, pstmt, rs);
 		}
@@ -250,7 +250,7 @@ public class VehicleDAO implements IVehicleDAO {
 
 		} catch (SQLException e) {
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
-					DateUtils.getTimeStamp() + " | Error in VehicleDAO.getAllVehicles");
+					DateUtils.getTimeStamp() + " | Error in VehicleDAO.getAllVehicles", e);
 		} finally {
 			JdbcUtils.closeResources(connection, pstmt, rs);
 		}
@@ -277,7 +277,7 @@ public class VehicleDAO implements IVehicleDAO {
 
 		} catch (SQLException e) {
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
-					DateUtils.getTimeStamp() + " | Error in VehicleDAO.getAllVehiclesByFilters");
+					DateUtils.getTimeStamp() + " | Error in VehicleDAO.getAllVehiclesByFilters", e);
 		} finally {
 			JdbcUtils.closeResources(connection, pstmt, rs);
 		}
@@ -302,7 +302,7 @@ public class VehicleDAO implements IVehicleDAO {
 
 		} catch (SQLException e) {
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
-					DateUtils.getTimeStamp() + " | Error in VehicleDAO.isVehicleExistByLicenseNumber");
+					DateUtils.getTimeStamp() + " | Error in VehicleDAO.isVehicleExistByLicenseNumber", e);
 		} finally {
 			JdbcUtils.closeResources(connection, pstmt, rs);
 		}

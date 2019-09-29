@@ -16,7 +16,7 @@ public class JdbcUtils {
 	public static Connection getConnection() throws SQLException {
 
 		Connection connection = DriverManager
-				.getConnection("jdbc:mysql://localhost:3306/vehicle_management_system?serverTimezone=UTC&useSSL=false", "root", "1234");
+				.getConnection("jdbc:mysql://localhost:3306/vehicle_management_system?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false", "root", "1234");
 
 		return connection;
 	}

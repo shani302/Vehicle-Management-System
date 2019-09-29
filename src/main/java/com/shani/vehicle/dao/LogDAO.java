@@ -1,7 +1,6 @@
 package com.shani.vehicle.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,13 +32,7 @@ public class LogDAO implements ILogDAO {
 			connection = JdbcUtils.getConnection();
 			String sql = "INSERT INTO logs (time_stamp, http_method, path, client_IP, vehicle_id) VALUES(?,?,?,?,?)";
 			pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			
-			System.out.println(log.getTimeStamp());
-			
 			java.sql.Timestamp sqlTime=new java.sql.Timestamp(log.getTimeStamp().getTime());
-	
-			System.out.println(sqlTime);
-			
 			pstmt.setTimestamp(1, sqlTime);
 			pstmt.setString(2, log.getHttpMethod());
 			pstmt.setString(3, log.getPath());
@@ -84,7 +77,7 @@ public class LogDAO implements ILogDAO {
 
 		} catch (SQLException e) {
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
-					DateUtils.getTimeStamp() + " | Error in LogDAO.getAllLogs");
+					DateUtils.getTimeStamp() + " | Error in LogDAO.getAllLogs", e);
 		} finally {
 			JdbcUtils.closeResources(connection, pstmt, rs);
 		}
@@ -111,7 +104,7 @@ public class LogDAO implements ILogDAO {
 
 		} catch (SQLException e) {
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
-					DateUtils.getTimeStamp() + " | Error in LogDAO.getAllLogsByDate");
+					DateUtils.getTimeStamp() + " | Error in LogDAO.getAllLogsByDate", e);
 		} finally {
 			JdbcUtils.closeResources(connection, pstmt, rs);
 		}
@@ -137,7 +130,7 @@ public class LogDAO implements ILogDAO {
 
 		} catch (SQLException e) {
 			throw new ApplicationException(ErrorType.GENERAL_ERROR,
-					DateUtils.getTimeStamp() + " | Error in LogDAO.getMostActiveVehicles");
+					DateUtils.getTimeStamp() + " | Error in LogDAO.getMostActiveVehicles", e);
 		} finally {
 			JdbcUtils.closeResources(connection, pstmt, rs);
 		}
